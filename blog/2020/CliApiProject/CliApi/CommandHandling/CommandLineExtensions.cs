@@ -122,6 +122,7 @@ namespace CliApi.CommandHandling
         public static IServiceCollection AddCommandLineHandlers(this IServiceCollection services)
         {
             services.AddTransient<DbInitCommandLineHandler>();
+            services.AddTransient<GetVersionCommandLineHandler>();
             services.AddTransient<MigrateToLatestVersionCommandHandler>();
             return services;
         }
