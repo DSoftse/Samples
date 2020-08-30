@@ -62,8 +62,8 @@ namespace CliApi
                             builder.AddCommandLine(args);
                             ConfigureAppConfiguration(builder);
                         })
-                )
-                .BranchToWebIfNoCommandToExecute();
+                );
+                //.BranchToWebIfNoCommandToExecute();
         }
     }
 }

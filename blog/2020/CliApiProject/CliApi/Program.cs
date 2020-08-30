@@ -19,11 +19,11 @@ namespace CliApi
                 .Build()
                 .InvokeAsync(args);
 
-            if (exitCode != ExitCode.BranchToWeb)
+            //if (exitCode != ExitCode.BranchToWeb)
                 return exitCode;
 
-            await CreateHostBuilder(args).Build().RunAsync(CancellationToken.None);
-            return ExitCode.Ok;
+            //await CreateHostBuilder(args).Build().RunAsync(CancellationToken.None);
+            //return ExitCode.Ok;
         }
 
         /// <summary>

@@ -90,29 +90,29 @@ namespace CliApi.CommandHandling
             return command;
         }
 
-        /// <summary>
-        /// Configures command handling pipeline by adding a middleware, if incoming command is not handled by the pipeline,
-        /// in other words if it is not known then the pipeline passes through these args to the application entry point.
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <returns></returns>
-        public static CommandLineBuilder BranchToWebIfNoCommandToExecute(this CommandLineBuilder builder)
-        {
-            bool IsKnownCommand(IEnumerable<Token> tokens) => tokens.All(x => x.Type == TokenType.Command);
-            builder.UseMiddleware(async (context, next) =>
-            {
-                IReadOnlyList<Token> tokens = context.ParseResult.Tokens;
-                if (IsKnownCommand(tokens))
-                {
-                    await next(context);
-                }
-                else
-                {
-                    context.ResultCode = ExitCode.BranchToWeb;
-                }
-            });
-            return builder;
-        }
+        ///// <summary>
+        ///// Configures command handling pipeline by adding a middleware, if incoming command is not handled by the pipeline,
+        ///// in other words if it is not known then the pipeline passes through these args to the application entry point.
+        ///// </summary>
+        ///// <param name="builder"></param>
+        ///// <returns></returns>
+        //public static CommandLineBuilder BranchToWebIfNoCommandToExecute(this CommandLineBuilder builder)
+        //{
+        //    bool IsKnownCommand(IEnumerable<Token> tokens) => tokens.All(x => x.Type == TokenType.Command);
+        //    builder.UseMiddleware(async (context, next) =>
+        //    {
+        //        IReadOnlyList<Token> tokens = context.ParseResult.Tokens;
+        //        if (IsKnownCommand(tokens))
+        //        {
+        //            await next(context);
+        //        }
+        //        else
+        //        {
+        //            context.ResultCode = ExitCode.BranchToWeb;
+        //        }
+        //    });
+        //    return builder;
+        //}
 
         /// <summary>
         /// Adds application's command handlers
@@ -161,6 +161,7 @@ namespace CliApi.CommandHandling
             Command rootCommand = root
                 .AddSubCommand(db)
                 .AddSubCommand(version);
+
 
             return rootCommand;
         }
